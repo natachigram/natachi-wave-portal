@@ -10,7 +10,7 @@ const App = () => {
   //loading state when mining
   const [loading, setLoading] = useState(false);
   //display numbers of wave
-  const [overallWaves, setOverallWaves] = useState(0);
+  // const [overallWaves, setOverallWaves] = useState(0);
 
   /*
    * All state property to store all waves
@@ -82,6 +82,7 @@ const App = () => {
         wavePortalContract.off('NewWave', onNewWave);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //contract abi
   const contractABI = abi.abi;
@@ -169,7 +170,6 @@ const App = () => {
         setLoading(false);
         count = await wavePortalContract.getTotalWaves();
         console.log('Retrieved total wave count...', count.toNumber());
-        setOverallWaves(count.toNumber());
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -197,13 +197,17 @@ const App = () => {
    */
   useEffect(() => {
     checkIfWalletIsConnected();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className='mainContainer'>
       <div className='dataContainer'>
         <div className='header'>
-          <span role='img'>👋</span> Hey there!
+          <span role='img' aria-label='hi'>
+            👋
+          </span>
+          Hey there!
         </div>
 
         <div className='bio'>
