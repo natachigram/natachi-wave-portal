@@ -17,7 +17,7 @@ const App = () => {
    */
   const [allWaves, setAllWaves] = useState([]);
   //variable to hold contract Address
-  const contractAddress = '0x46dD32Bc67526EE80C73278bf42bF3FAd6459b81';
+  const contractAddress = '0x6A88991909d704aC69412b26f4C7345AED112E87';
 
   const getAllWaves = async () => {
     const { ethereum } = window;
@@ -207,10 +207,9 @@ const App = () => {
         </div>
 
         <div className='bio'>
-          Hello, my name is Nnamaka Natachi O. I am a web3 developer I am
-          specializing in building exceptional digital experiences. Currently, I
-          am focused on building accessible, human-centered products on the
-          blockchain.
+          Hello, my name is Natachi. I am a web3 developer I am specializing in
+          building exceptional digital experiences. Currently, I am focused on
+          building accessible, human-centered products on the blockchain.
         </div>
 
         <div className='msg-container'>
@@ -233,41 +232,38 @@ const App = () => {
           </form>
         </div>
 
-        <button className='waveButton' onClick={wave}>
-          {loading ? (
-            <img
-              className='loader'
-              src='https://c.tenor.com/NqKNFHSmbssAAAAi/discord-loading-dots-discord-loading.gif'
-              alt='loader'
-            />
-          ) : (
-            ' Wave at Me'
-          )}
-        </button>
+        {currentAccount && (
+          <button className='waveButton' onClick={wave}>
+            {loading ? (
+              <img
+                className='loader'
+                src='https://c.tenor.com/NqKNFHSmbssAAAAi/discord-loading-dots-discord-loading.gif'
+                alt='loader'
+              />
+            ) : (
+              ' Wave at Me'
+            )}
+          </button>
+        )}
 
         {!currentAccount && (
-          <button className='waveButton' onClick={connectWallet}>
+          <button className='waveButton connect-btn' onClick={connectWallet}>
             Connect Wallet
           </button>
         )}
 
-        <div className='total-waves'>
-          <span>{overallWaves} Total Waves</span>{' '}
-        </div>
-
         {allWaves.map((wave, index) => {
           return (
-            <div
-              key={index}
-              style={{
-                backgroundColor: 'OldLace',
-                marginTop: '16px',
-                padding: '8px',
-              }}
-            >
-              <div>Address: {wave.address}</div>
-              <div>Time: {wave.timestamp.toString()}</div>
-              <div>Message: {wave.message}</div>
+            <div key={index} className='wave-msgs'>
+              <div>
+                <span>Address:</span> {wave.address}
+              </div>
+              <div>
+                <span>Time:</span> {wave.timestamp.toString()}
+              </div>
+              <div>
+                <span>Message:</span> {wave.message}
+              </div>
             </div>
           );
         })}
