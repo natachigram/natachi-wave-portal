@@ -216,25 +216,27 @@ const App = () => {
           building accessible, human-centered products on the blockchain.
         </div>
 
-        <div className='msg-container'>
-          <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              placeholder='Enter message'
-              value={msg}
-              onChange={handleMsgChange}
-            />
-            {added ? (
-              <button disabled>Added to wave</button>
-            ) : msg === '' ? (
-              <button disabled id='empty'>
-                Enter message
-              </button>
-            ) : (
-              <button>Add to wave</button>
-            )}
-          </form>
-        </div>
+        {currentAccount && (
+          <div className='msg-container'>
+            <form onSubmit={handleSubmit}>
+              <input
+                type='text'
+                placeholder='Enter message'
+                value={msg}
+                onChange={handleMsgChange}
+              />
+              {added ? (
+                <button disabled>Added to wave</button>
+              ) : msg === '' ? (
+                <button disabled id='empty'>
+                  Enter message
+                </button>
+              ) : (
+                <button>Add to wave</button>
+              )}
+            </form>
+          </div>
+        )}
 
         {currentAccount && (
           <button className='waveButton' onClick={wave}>
@@ -252,7 +254,7 @@ const App = () => {
 
         {!currentAccount && (
           <button className='waveButton connect-btn' onClick={connectWallet}>
-            Connect Wallet
+            Connect Wallet to Send Me a Wave
           </button>
         )}
 
